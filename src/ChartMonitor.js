@@ -20,7 +20,7 @@ const styles = {
 };
 
 function checkIfImmutable(state) {
-  if (state.isIterable) {
+  if (state.isIterable()) {
     return state.toJS();
   }
   return state;
