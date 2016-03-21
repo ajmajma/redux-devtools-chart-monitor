@@ -19,6 +19,13 @@ const styles = {
   }
 };
 
+function checkIfImmutable(state) {
+  if( state.isIterable ) {
+    return state.toJS();
+  }
+  return state;
+}
+
 class ChartMonitor extends Component {
   static update = reducer;
 
@@ -130,7 +137,7 @@ class ChartMonitor extends Component {
     };
 
     const defaultOptions = {
-      state: computedStates[computedStates.length - 1].state,
+      state: checkIfImmutable(computedStates[computedStates.length - 1].state),
       isSorted: false,
       heightBetweenNodesCoeff: 1,
       widthBetweenNodesCoeff: 1.3,
